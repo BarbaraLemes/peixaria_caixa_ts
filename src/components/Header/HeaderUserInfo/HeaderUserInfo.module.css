@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.titulo {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500; /* Roboto Medium */
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+  letter-spacing: 0.5px;
+}
+
+.nome {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400; /* Roboto Regular */
+  font-family: 'Roboto', sans-serif;
+  color: #666;
+}
+
+.dateContainer {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 16px;
+  color: #666;
+  font-size: 14px;
+  font-weight: 400; /* Roboto Regular */
+  font-family: 'Roboto', sans-serif;
+}
