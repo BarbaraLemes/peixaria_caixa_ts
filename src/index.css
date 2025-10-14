@@ -42,3 +42,10 @@ body {
   font-weight: 700;
 }
 
+/* Estilo para o conteúdo principal */
+main {
+  padding: 20px;
+  min-height: calc(100vh - 140px); /* Ajuste baseado na altura do header + navbar */
+  background-color: #fff;
+}
+
