@@ -1,9 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
-
-// Componentes das páginas (você criará depois)
-const PontoVenda = () => <div>Página do Ponto de Venda</div>;
-const GestaoProdutos = () => <div>Página de Gestão de Produtos</div>;
-const Relatorios = () => <div>Página de Relatórios</div>;
+import { PontoVenda } from './pages/PontoVenda';
+import { GestaoProdutos } from './pages/GestaoProdutos';
+import { Relatorios } from './pages/Relatorios';
 
 export const RoutesApp = () => {
   return (
