@@ -1,11 +1,17 @@
 import { AtendentePicker } from '../components/AtendentePicker';
 import { ControleMesas } from '../components/ControleMesas';
+import { Produtos } from '../components/Produtos';
 import { useAtendente } from '../components/AtendentePicker/useAtendente';
 import { useMesas } from '../components/ControleMesas/useMesas';
 
 export const PontoVenda = () => {
   const { atendentes, atendenteSelecionado, handleAtendenteChange } = useAtendente();
   const { mesas, mesaSelecionada, handleMesaClick } = useMesas();
+
+  const handleProdutoSelect = (produto: any) => {
+    console.log('Produto selecionado:', produto);
+    // Aqui você pode implementar a lógica para adicionar o produto ao pedido
+  };
 
   return (
     <div style={{ padding: '20px', maxWidth: '1200px', margin: '0 auto' }}>
@@ -18,6 +24,10 @@ export const PontoVenda = () => {
       <ControleMesas
         mesas={mesas}
         onMesaSelect={handleMesaClick}
+      />
+      
+      <Produtos
+        onProdutoSelect={handleProdutoSelect}
       />
       
       {/* Debug info - removível */}

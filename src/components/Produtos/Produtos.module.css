@@ -1,0 +1,147 @@
+/* Container principal */
+.container {
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #fff;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+/* Container das abas */
+.tabsContainer {
+  display: flex;
+  background-color: #f0f0f0;
+  border-radius: 25px;
+  padding: 4px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+/* Botões das abas */
+.tabButton {
+  background-color: transparent;
+  color: #333;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 24px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex: 1;
+}
+
+.tabButton:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.tabButton.active {
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Grid dos produtos */
+.produtosGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+/* Card individual do produto */
+.produtoCard {
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  border: 2px solid transparent;
+}
+
+.produtoCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.produtoCard:active {
+  transform: translateY(0);
+}
+
+/* Nome do produto */
+.produtoNome {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Preço do produto */
+.produtoPreco {
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0.9;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Estados específicos */
+.produtoCard.selecionado {
+  border-color: #fff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .tabsContainer {
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .tabButton {
+    padding: 10px 16px;
+  }
+  
+  .produtosGrid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+  }
+  
+  .produtoCard {
+    min-height: 80px;
+    padding: 16px;
+  }
+  
+  .produtoNome {
+    font-size: 14px;
+  }
+  
+  .produtoPreco {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .produtosGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
