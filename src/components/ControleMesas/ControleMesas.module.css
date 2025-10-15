@@ -1,0 +1,173 @@
+/* Container principal */
+.container {
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e5e5e5;
+}
+
+.title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.titleIcon {
+  color: #666;
+  font-size: 20px;
+}
+
+/* Grid das mesas */
+.mesasGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+/* Card individual da mesa */
+.mesaCard {
+  background-color: #fff;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  padding: 12px;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Roboto', sans-serif;
+}
+
+.mesaCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estados das mesas */
+.livre {
+  background-color: #d4f4dd;
+  border-color: #28a745;
+}
+
+.livre:hover {
+  background-color: #c3f0cc;
+}
+
+.ocupada {
+  background-color: #f8d7da;
+  border-color: #dc3545;
+}
+
+.selecionada {
+  background-color: #cce7ff;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+/* Textos dentro da mesa */
+.mesaNumero {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.mesaStatus {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.mesaStatus.livre {
+  color: #28a745;
+}
+
+.mesaStatus.ocupada {
+  color: #dc3545;
+}
+
+.mesaInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  margin-top: 4px;
+}
+
+.mesaTempo {
+  font-size: 11px;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.mesaValor {
+  font-size: 12px;
+  font-weight: 600;
+  color: #dc3545;
+}
+
+/* Legenda */
+.legenda {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.legendaItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  color: #666;
+}
+
+.legendaCor {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+}
+
+.legendaCor.livre {
+  background-color: #d4f4dd;
+  border-color: #28a745;
+}
+
+.legendaCor.ocupada {
+  background-color: #f8d7da;
+  border-color: #dc3545;
+}
+
+.legendaCor.selecionada {
+  background-color: #cce7ff;
+  border-color: #007bff;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .mesasGrid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+  
+  .mesaCard {
+    min-height: 70px;
+    padding: 8px;
+  }
+  
+  .mesaNumero {
+    font-size: 14px;
+  }
+}
