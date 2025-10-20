@@ -1,18 +1,18 @@
 import { useState } from 'react';
 import { ModalProduto } from './components/ModalProduto';
-import type { Produto, CategoriaType } from '../../types/produtos';
+import type { IProduto, CategoriaType } from '../../types/IProduto';
 import styles from './GestaoProdutos.module.css';
 
 interface ProdutosState {
-  bebidas: Produto[];
-  pratos: Produto[];
-  sobremesas: Produto[];
+  bebidas: IProduto[];
+  pratos: IProduto[];
+  sobremesas: IProduto[];
 }
 
 export const GestaoProdutos = () => {
   const [activeTab, setActiveTab] = useState<CategoriaType>('bebidas');
   const [modalOpen, setModalOpen] = useState(false);
-  const [produtoEditando, setProdutoEditando] = useState<Produto | null>(null);
+  const [produtoEditando, setProdutoEditando] = useState<IProduto | null>(null);
 
   //Estado para produtos (depois virá de uma API ou contexto)
   const [produtos, setProdutos] = useState<ProdutosState>({
@@ -50,7 +50,7 @@ export const GestaoProdutos = () => {
     setModalOpen(true);
   };
 
-  const handleEditarProduto = (produto: Produto) => {
+  const handleEditarProduto = (produto: IProduto) => {
     setProdutoEditando(produto);
     setModalOpen(true);
   };
@@ -64,7 +64,7 @@ export const GestaoProdutos = () => {
     }
   };
 
-  const handleSalvarProduto = (produto: Produto) => {
+  const handleSalvarProduto = (produto: IProduto) => {
     //Editando produto existente
     setProdutos(prev => {
       if (produtoEditando) {

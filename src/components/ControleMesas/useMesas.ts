@@ -1,8 +1,8 @@
 import { useState, useCallback, useEffect } from 'react';
-import type { Mesa, StatusMesa } from '../../types';
+import type { IMesa, IMesaStatus } from '../../types/IMesa';
 
 // Mock data das 13 mesas
-const MESAS_MOCK: Mesa[] = [
+const MESAS_MOCK: IMesa[] = [
   { id: '1', numero: 1, status: 'livre' },
   { id: '2', numero: 2, status: 'ocupada', valor: 45, tempoOcupada: 15, inicioOcupacao: new Date(Date.now() - 15 * 60 * 1000) },
   { id: '3', numero: 3, status: 'livre' },
@@ -19,8 +19,8 @@ const MESAS_MOCK: Mesa[] = [
 ];
 
 export const useMesas = () => {
-  const [mesas, setMesas] = useState<Mesa[]>(MESAS_MOCK);
-  const [mesaSelecionada, setMesaSelecionada] = useState<Mesa | null>(null);
+  const [mesas, setMesas] = useState<IMesa[]>(MESAS_MOCK);
+  const [mesaSelecionada, setMesaSelecionada] = useState<IMesa | null>(null);
 
   // Atualizar tempo das mesas ocupadas a cada minuto
   useEffect(() => {
@@ -40,7 +40,7 @@ export const useMesas = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const handleMesaClick = useCallback((mesa: Mesa) => {
+  const handleMesaClick = useCallback((mesa: IMesa) => {
     // Limpar seleção anterior
     setMesas(prevMesas => 
       prevMesas.map(m => ({
@@ -54,7 +54,7 @@ export const useMesas = () => {
       setMesas(prevMesas => 
         prevMesas.map(m => 
           m.id === mesa.id 
-            ? { ...m, status: 'selecionada' as StatusMesa }
+            ? { ...m, status: 'selecionada' as IMesaStatus }
             : m
         )
       );
@@ -70,7 +70,7 @@ export const useMesas = () => {
         mesa.id === mesaId 
           ? { 
               ...mesa, 
-              status: 'ocupada' as StatusMesa,
+              status: 'ocupada' as IMesaStatus,
               valor,
               inicioOcupacao: new Date(),
               tempoOcupada: 0
@@ -86,7 +86,7 @@ export const useMesas = () => {
         mesa.id === mesaId 
           ? { 
               ...mesa, 
-              status: 'livre' as StatusMesa,
+              status: 'livre' as IMesaStatus,
               valor: undefined,
               inicioOcupacao: undefined,
               tempoOcupada: undefined

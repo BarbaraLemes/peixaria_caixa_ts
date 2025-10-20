@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
-import type { Produto, CategoriaType } from "../../../types/produtos";
+import type { IProduto, CategoriaType } from "../../../types/IProduto";
 import styles from "./ModalProduto.module.css";
 
 interface ModalProdutoProps {
   open: boolean;
   onClose: () => void;
-  produto?: Produto | null;
+  produto?: IProduto | null;
   categoria: CategoriaType;
-  onSave: (produto: Produto) => void;
+  onSave: (produto: IProduto) => void;
 }
 
 export function ModalProduto({ 

@@ -1,9 +1,10 @@
+import type { IUsuario } from '../../types/IUsuario';
 import styles from './Header.module.css';
 import { HeaderDailySummary } from './HeaderDailySummary';
 import { HeaderUserInfo } from './HeaderUserInfo';
 
 interface HeaderProps {
-    nome?: string;
+    usuario?: IUsuario;
     tituloSistema?: string;
     total?: number;
     pedidos?: number;
@@ -11,7 +12,7 @@ interface HeaderProps {
 }
 
 const Header = ({ 
-    nome = "João da Silva",
+    usuario = "João da Silva",
     tituloSistema = "Sistema de Caixa",
     total = 1230,
     pedidos = 15,

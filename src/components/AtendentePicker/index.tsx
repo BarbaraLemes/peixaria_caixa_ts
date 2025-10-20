@@ -1,13 +1,13 @@
 import { Person, KeyboardArrowDown } from '@mui/icons-material';
 import styles from './AtendentePicker.module.css';
-import type { IAtendentePickerProps } from '../../types/IAtendente';
+import type { IAtendentePicker } from '../../types/IAtendente';
 
 export const AtendentePicker = ({
   atendentes = [],
   atendenteSelecionado,
   onAtendenteChange,
   label = "Atendente:"
-}: IAtendentePickerProps) => {
+}: IAtendentePicker) => {
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const atendenteId = event.target.value;

@@ -1,15 +1,15 @@
-import type { ProdutoCardProps } from '../../types';
+import type { IProdutoCard } from '../../types/IProduto';
 import styles from './Produtos.module.css';
 
-export const ProdutoCard = ({ produto, onProdutoClick }: ProdutoCardProps) => {
+export const ProdutoCard = ({ produto, onProdutoClick }: IProdutoCard) => {
   const handleClick = () => {
     if (onProdutoClick) {
       onProdutoClick(produto);
     }
   };
 
-  const formatarPreco = (preco: number): string => {
-    return `R$ ${preco.toFixed(2).replace('.', ',')}`;
+  const formatarPreco = (preco: string): number => {
+    return Number(preco.replace(',', '.'));
   };
 
   return (

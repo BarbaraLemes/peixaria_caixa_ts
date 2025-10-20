@@ -1,11 +1,16 @@
 import { TableRestaurant } from '@mui/icons-material';
 import { MesaCard } from './MesaCard';
-import type { ControleMesasProps } from '../../types';
 import styles from './ControleMesas.module.css';
+import type { IMesa } from '../../types/IMesa';
+
+interface ControleMesasProps {
+  mesas?: IMesa[];
+  onMesaSelect?: (mesa: IMesa) => void;
+}
 
 export const ControleMesas = ({ mesas = [], onMesaSelect }: ControleMesasProps) => {
-  
-  const handleMesaClick = (mesa: any) => {
+
+  const handleMesaClick = (mesa: IMesa) => {
     if (onMesaSelect) {
       onMesaSelect(mesa);
     }

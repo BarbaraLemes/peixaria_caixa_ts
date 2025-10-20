@@ -1,22 +1,23 @@
 import { ProdutoCard } from './ProdutoCard';
 import { useProdutos } from './useProdutos';
-import type { Categoria } from '../../types';
 import styles from './Produtos.module.css';
+import type { IProduto } from '../../types/IProduto';
 
-interface ProdutosComponentProps {
-  onProdutoSelect?: (produto: any) => void;
+export interface ProdutosProps {
+  produtos?: IProduto[];
+  onProdutoSelect?: (produto: IProduto) => void;
 }
 
-export const Produtos = ({ onProdutoSelect }: ProdutosComponentProps) => {
+export const Produtos = ({ onProdutoSelect }: ProdutosProps) => {
   const { produtos, categoriaAtiva, handleCategoriaChange, handleProdutoClick } = useProdutos();
-  
-  const categorias: { id: Categoria; label: string }[] = [
+
+  const categorias: { id: IProduto['categoria']; label: string }[] = [
     { id: 'bebidas', label: 'Bebidas' },
     { id: 'pratos', label: 'Pratos' },
     { id: 'sobremesas', label: 'Sobremesas' },
   ];
 
-  const handleProdutoCardClick = (produto: any) => {
+  const handleProdutoCardClick = (produto: IProduto) => {
     handleProdutoClick(produto);
     if (onProdutoSelect) {
       onProdutoSelect(produto);

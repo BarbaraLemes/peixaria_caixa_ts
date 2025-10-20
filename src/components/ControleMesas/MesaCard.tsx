@@ -1,8 +1,8 @@
 import { AccessTime } from '@mui/icons-material';
-import type { MesaCardProps } from '../../types';
 import styles from './ControleMesas.module.css';
+import type { IMesaCard } from '../../types/IMesa';
 
-export const MesaCard = ({ mesa, onMesaClick }: MesaCardProps) => {
+export const MesaCard = ({ mesa, onMesaClick }: IMesaCard) => {
   const handleClick = () => {
     if (onMesaClick) {
       onMesaClick(mesa);

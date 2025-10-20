@@ -4,7 +4,7 @@ export interface IAtendente {
   ativo?: boolean;
 }
 
-export interface IAtendentePickerProps {
+export interface IAtendentePicker {
   atendentes?: IAtendente[];
   atendenteSelecionado?: IAtendente;
   onAtendenteChange?: (atendente: IAtendente) => void;
