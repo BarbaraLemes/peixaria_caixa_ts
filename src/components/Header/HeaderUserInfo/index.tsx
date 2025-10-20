@@ -7,6 +7,7 @@ interface HeaderUserInfoProps {
   tituloSistema: string;
   data: Date;
 }
+//Mock data do usuário - depois virá de contexto/estado global
 
 export const HeaderUserInfo = ({ nome, tituloSistema, data }: HeaderUserInfoProps) => {
   const formatDate = (date: Date) => {

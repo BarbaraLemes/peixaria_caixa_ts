@@ -42,7 +42,9 @@ export const Produtos = ({ onProdutoSelect }: ProdutosComponentProps) => {
         ))}
       </div>
 
-      {/* Grid de produtos */}
+      {/* Grid de produtos
+          Foi adicionado o componente que irá renderizar cada produto, e feito o mapeamento dos produtos vindo do hook useProdutos, mas futuramente pode ser de uma API 
+      */}
       <div className={styles.produtosGrid}>
         {produtos.map((produto) => (
           <ProdutoCard

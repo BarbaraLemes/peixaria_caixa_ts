@@ -1,8 +1,10 @@
-import { AtendentePicker } from '../components/AtendentePicker';
-import { ControleMesas } from '../components/ControleMesas';
-import { Produtos } from '../components/Produtos';
-import { useAtendente } from '../components/AtendentePicker/useAtendente';
-import { useMesas } from '../components/ControleMesas/useMesas';
+import styles from './PontoVenda.module.css';
+import { AtendentePicker } from '../../components/AtendentePicker';
+import { ControleMesas } from '../../components/ControleMesas';
+import { Produtos } from '../../components/Produtos';
+import { useAtendente } from '../../components/AtendentePicker/useAtendente';
+import { useMesas } from '../../components/ControleMesas/useMesas';
+import SecaoPagamento from '../../components/SecaoPagamento';
 
 export const PontoVenda = () => {
   const { atendentes, atendenteSelecionado, handleAtendenteChange } = useAtendente();
@@ -26,9 +28,15 @@ export const PontoVenda = () => {
         onMesaSelect={handleMesaClick}
       />
       
-      <Produtos
+      <div className={styles.productsSection}>
+        <Produtos
         onProdutoSelect={handleProdutoSelect}
       />
+      </div>
+
+      <section className={styles.paymentSection}>
+        <SecaoPagamento />
+      </section>
       
       {/* Debug info - removível */}
       {mesaSelecionada && (

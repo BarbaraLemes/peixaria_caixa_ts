@@ -1,0 +1,183 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background-color: white;
+  border-radius: 1rem;
+  width: 90%;
+  max-width: 600px;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem 0;
+}
+
+.modalTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+}
+
+.closeButton:hover {
+  background-color: #f0f0f0;
+}
+
+.modalBody {
+  padding: 1.5rem;
+  padding-top: 1.25rem;
+  flex: 1;
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.5rem;
+  background-color: #f8f9fa;
+  font-size: 1rem;
+}
+
+.select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.5rem;
+  background-color: #f8f9fa;
+  font-size: 1rem;
+}
+
+.colorSection {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.colorPreview {
+  width: 50px;
+  height: 50px;
+  border-radius: 0.5rem;
+  border: 2px solid #ddd;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.colorPreview:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.colorInput {
+  flex: 1;
+}
+
+.quickColors {
+  margin-top: 1rem;
+}
+
+.quickColorsTitle {
+  color: #666;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.colorGrid {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.colorOption {
+  width: 25px;
+  height: 25px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  transition: all 0.2s ease;
+}
+
+.colorOption:hover {
+  transform: scale(1.1);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+
+.colorOptionSelected {
+  border: 2px solid #333;
+}
+
+.modalFooter {
+  padding: 0 1.5rem 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.button {
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cancelButton {
+  background: none;
+  border: 1px solid #ddd;
+  color: #666;
+}
+
+.cancelButton:hover {
+  border-color: #999;
+}
+
+.saveButton {
+  background-color: #2c2c2c;
+  color: white;
+  border: none;
+}
+
+.saveButton:hover {
+  background-color: #404040;
+}
+
+.saveButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

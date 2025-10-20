@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
-import { PontoVenda } from './pages/PontoVenda';
-import { GestaoProdutos } from './pages/GestaoProdutos';
+import { PontoVenda } from './pages/PontoVenda/PontoVenda';
+import { GestaoProdutos } from './pages/GestaoProdutos/GestaoProdutos';
 import { Relatorios } from './pages/Relatorios';
 
 export const RoutesApp = () => {
