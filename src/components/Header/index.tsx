@@ -4,7 +4,7 @@ import { HeaderDailySummary } from './HeaderDailySummary';
 import { HeaderUserInfo } from './HeaderUserInfo';
 
 interface HeaderProps {
-    usuario?: IUsuario;
+    nomeUsuario?: IUsuario;
     tituloSistema?: string;
     total?: number;
     pedidos?: number;
@@ -12,7 +12,7 @@ interface HeaderProps {
 }
 
 const Header = ({ 
-    usuario = "João da Silva",
+    nomeUsuario = { nomeUsuario: "João da Silva" },
     tituloSistema = "Sistema de Caixa",
     total = 1230,
     pedidos = 15,
@@ -21,7 +21,7 @@ const Header = ({
     return (
         <header className={styles.header}>
             <HeaderUserInfo
-                nome={nome}
+                nomeUsuario={nomeUsuario}
                 tituloSistema={tituloSistema}
                 data={new Date()}
             />

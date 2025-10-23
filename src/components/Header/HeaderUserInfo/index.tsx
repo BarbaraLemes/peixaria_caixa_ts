@@ -1,15 +1,17 @@
 import { Avatar } from "@mui/material";
 import styles from "./HeaderUserInfo.module.css";
 import { CalendarTodayOutlined, Person } from "@mui/icons-material";
+import type { IUsuario } from "../../../types/IUsuario";
+import type React from "react";
 
 interface HeaderUserInfoProps {
-  nome: string;
+  nomeUsuario: IUsuario;
   tituloSistema: string;
   data: Date;
 }
 //Mock data do usuário - depois virá de contexto/estado global
 
-export const HeaderUserInfo = ({ nome, tituloSistema, data }: HeaderUserInfoProps) => {
+export const HeaderUserInfo = ({ nomeUsuario, tituloSistema, data }: HeaderUserInfoProps) => {
   const formatDate = (date: Date) => {
     const formatted = date.toLocaleDateString("pt-BR", {
       weekday: "long",
@@ -34,7 +36,7 @@ export const HeaderUserInfo = ({ nome, tituloSistema, data }: HeaderUserInfoProp
 
       <div className={styles.textContainer}>
         <h3 className={styles.titulo}>{tituloSistema}</h3>
-        <p className={styles.nome}>{nome}</p>
+        <p className={styles.nome}>{nomeUsuario.nomeUsuario}</p>
       </div>
 
       <div className={styles.dateContainer}>

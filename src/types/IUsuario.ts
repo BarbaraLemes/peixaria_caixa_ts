@@ -1,5 +1,5 @@
 export interface IUsuario {
-    nome: string;
+    nomeUsuario: string;
     vendas?: number;
     pedidos?: number;
 }
