@@ -13,7 +13,7 @@ interface HeaderProps {
 
 const Header = ({ 
     nomeUsuario = { nomeUsuario: "João da Silva" },
-    tituloSistema = "Sistema de Caixa",
+    tituloSistema = "Sistema de Caixa Peixaria da Laura",
     total = 1230,
     pedidos = 15,
     onLogout
