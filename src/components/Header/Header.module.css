@@ -2,7 +2,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 16px 24px;
   border-bottom: none;
-  background-color: #fff;
+  background-color: #ffffff;
+  border-width: 1px;
+  margin-top: 18px;
+  margin-bottom: 18px;
+  margin-right: 42px;
+  margin-left: 42px;
+  border: 2px solid rgb(224, 222, 222);
+  border-radius: 8px;
+  height: 105px;
+  box-shadow: 0 0 0 39px #f8f9fa;
 }
+
+
