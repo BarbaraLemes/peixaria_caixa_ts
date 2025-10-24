@@ -3,10 +3,10 @@ import type { IAtendente } from '../../types/IAtendente';
 
 // Mock data - depois pode vir de API
 const ATENDENTES_MOCK: IAtendente[] = [
-  { id: '1', nome: 'João Silva', ativo: true },
-  { id: '2', nome: 'Maria Santos', ativo: true },
-  { id: '3', nome: 'Pedro Costa', ativo: true },
-  { id: '4', nome: 'Ana Oliveira', ativo: false },
+  { id: '1', nome: 'Arlindo Rodrigues', ativo: true },
+  { id: '2', nome: 'Lauranece Siqueira', ativo: true },
+  { id: '3', nome: 'Geovanne', ativo: true },
+  { id: '4', nome: 'Isabela Maysa', ativo: false },
 ];
 
 export const useAtendente = () => {

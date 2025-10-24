@@ -26,9 +26,10 @@ export const HeaderUserInfo = ({ nomeUsuario, tituloSistema, data }: HeaderUserI
     <div className={styles.container}>
       <Avatar
         sx={{
-          backgroundColor: "#80b1d2ff",
+          backgroundColor: "#cde3f9",
           width: 45,
           height: 45,
+          color: "oklch(.546 .245 262.881)"
         }}
       >
         <Person />

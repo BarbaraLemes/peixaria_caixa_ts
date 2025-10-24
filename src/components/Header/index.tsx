@@ -13,25 +13,25 @@ interface HeaderProps {
 
 const Header = ({ 
     nomeUsuario = { nomeUsuario: "João da Silva" },
-    tituloSistema = "Sistema de Caixa",
-    total = 1230,
-    pedidos = 15,
+    tituloSistema = "Sistema de Caixa Peixaria da Laura",
+    total = 0,
+    pedidos = 0,
     onLogout
 }: HeaderProps) => {
     return (
-        <header className={styles.header}>
-            <HeaderUserInfo
-                nomeUsuario={nomeUsuario}
-                tituloSistema={tituloSistema}
-                data={new Date()}
-            />
+           <header className={styles.header}>
+              <HeaderUserInfo
+                 nomeUsuario={nomeUsuario}
+                 tituloSistema={tituloSistema}
+                 data={new Date()}
+               />
 
-            <HeaderDailySummary
-                total={total}
-                pedidos={pedidos}
-                onLogout={onLogout}
-            />
-        </header>
+               <HeaderDailySummary
+                 total={total}
+                 pedidos={pedidos}
+                 onLogout={onLogout}
+                />
+            </header> 
     )
 }
 

@@ -6,7 +6,7 @@
 
   color-scheme: light;
   color: #333;
-  background-color: #fff;
+  background-color: #dddddd;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -44,8 +44,7 @@ body {
 
 /* Estilo para o conteúdo principal */
 main {
-  padding: 20px;
+  padding: 0px 20px 20px 20px;
   min-height: calc(100vh - 140px); /* Ajuste baseado na altura do header + navbar */
-  background-color: #fff;
 }
 

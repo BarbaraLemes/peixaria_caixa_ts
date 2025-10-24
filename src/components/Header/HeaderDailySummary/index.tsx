@@ -18,7 +18,7 @@ export const HeaderDailySummary = ({ total, pedidos, onLogout }: HeaderDailySumm
 
     return (
         <div className={styles.container}>
-            <div>
+            <div className={styles.total1}>
                 <strong className={styles.total}>
                     R$ {total.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                 </strong>
@@ -26,9 +26,13 @@ export const HeaderDailySummary = ({ total, pedidos, onLogout }: HeaderDailySumm
             </div>
 
             <div className={styles.pedidos}>
-                <ShoppingCartOutlined sx={{ color: "#3498db", fontSize: 20 }} />
-                <span>{pedidos}</span>
-                <p className={styles.description}>Pedidos</p>
+                <div className={styles.pedidos2}>
+                    <ShoppingCartOutlined sx={{ color: "#3498db", fontSize: 20 }} />
+                    <span>{pedidos}</span>
+                </div>
+                <div>
+                    <p className={styles.description}>Pedidos</p>
+                </div>
             </div>
 
             <button className={styles.logout} onClick={handleLogout}>

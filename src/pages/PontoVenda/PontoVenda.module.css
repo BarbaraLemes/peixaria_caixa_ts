@@ -4,6 +4,14 @@
   overflow: hidden;
 }
 
+.productsPedidos{
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .content {
   flex: 1;
   display: flex;
