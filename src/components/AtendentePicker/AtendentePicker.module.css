@@ -3,12 +3,15 @@
   align-items: center;
   gap: 8px;
   margin-bottom: 16px;
+  background: white;
+  padding: 23px;
+  border-radius: 21px;
 }
 
 .label {
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   color: #333;
   display: flex;
   align-items: center;
@@ -22,8 +25,8 @@
 
 .select {
   appearance: none;
-  background-color: #fff;
-  border: 1px solid #ddd;
+  background-color: #f3f3f5;
+  border: 1px solid #f3f3f5;
   border-radius: 4px;
   padding: 8px 32px 8px 12px;
   font-family: 'Roboto', sans-serif;
@@ -32,16 +35,17 @@
   cursor: pointer;
   min-width: 150px;
   transition: border-color 0.2s ease;
+  border-radius: 5px;
 }
 
 .select:hover {
-  border-color: #007bff;
+  border-color: #bdbdbd;
 }
 
 .select:focus {
   outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+  border-color: #bdbdbd;
+  box-shadow: 0 0 0 2px #bdbdbd;
 }
 
 .selectIcon {
@@ -60,10 +64,10 @@
 }
 
 .option:hover {
-  background-color: #f5f5f5;
+  background-color: #ff3131;
 }
 
 .icon {
-  color: #666;
+  color: oklch(.546 .245 262.881);
   font-size: 18px;
 }

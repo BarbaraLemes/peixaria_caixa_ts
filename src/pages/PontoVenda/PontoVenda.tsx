@@ -28,7 +28,8 @@ export const PontoVenda = () => {
         onMesaSelect={handleMesaClick}
       />
       
-      <div className={styles.productsSection}>
+      <div className={styles.productsPedidos}>
+        <div className={styles.productsSection}>
         <Produtos
         onProdutoSelect={handleProdutoSelect}
       />
@@ -37,6 +38,7 @@ export const PontoVenda = () => {
       <section className={styles.paymentSection}>
         <SecaoPagamento />
       </section>
+      </div>
       
       {/* Debug info - removível */}
       {mesaSelecionada && (

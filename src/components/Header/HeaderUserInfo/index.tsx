@@ -29,7 +29,7 @@ export const HeaderUserInfo = ({ nomeUsuario, tituloSistema, data }: HeaderUserI
           backgroundColor: "#cde3f9",
           width: 45,
           height: 45,
-          color: "rgb(30 79 241)"
+          color: "oklch(.546 .245 262.881)"
         }}
       >
         <Person />
