@@ -1,0 +1,73 @@
+.container {
+    display: flex;
+    gap: 16px;
+    padding: 24px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e5e5;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+    border-radius: 21px;
+    border: 2px solid rgb(224, 222, 222);
+}
+
+.titulo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #333;
+}
+
+.containerButtons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1px;
+    flex-direction: row;
+    gap: 14px;
+}
+
+.buttonGroup {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1px;
+    flex-direction: row;
+    gap: 14px;
+}
+
+.buttonOpen {
+    background-color: oklch(60.438% 0.17344 148.347);
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.buttonClose {
+    background-color: oklch(67.671% 0.15715 35.076);
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background-color 0.2s ease;
+}

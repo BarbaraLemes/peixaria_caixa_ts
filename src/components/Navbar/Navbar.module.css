@@ -19,7 +19,7 @@
   padding: 4px;
 }
 
-.navbar2 {
+/* .navbar2 {
   display: flex;
   gap: 16px;
   padding: 24px;
@@ -31,9 +31,9 @@
   margin-bottom: 4px;
   border-radius: 21px;
   border: 2px solid rgb(224, 222, 222);
-}
+} */
 
-.userName {
+/* .userName {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -41,7 +41,7 @@
   font-weight: 500;
   font-size: 16px;
   color: #333;
-}
+} */
 .navItem {
   padding: 12px 20px;
     border: none;
@@ -76,25 +76,25 @@
   outline-offset: 2px;
 }
 
-.Button {
+/* .Button {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1px;
   flex-direction: row;
   gap: 14px;
-}
+} */
 
-.Button2{
+/* .Button2{
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1px;
   flex-direction: row;
   gap: 14px;
-}
+} */
 
-.logoutButton {
+/* .logoutButton {
   background-color: oklch(60.438% 0.17344 148.347);
   color: #fff;
   border: none;
@@ -108,7 +108,7 @@
   align-items: center;
   gap: 6px;
   transition: background-color 0.2s ease;
-}
+} */
 
 .logoutButton:hover {
   background-color: oklch(43.938% 0.12384 149.063);
@@ -118,7 +118,7 @@
   background-color: oklch(52.181% 0.14595 34.853);
 }
 
-.logoutButton2 {
+/* .logoutButton2 {
   background-color: oklch(67.671% 0.15715 35.076);
   color: #fff;
   border: none;
@@ -132,7 +132,7 @@
   align-items: center;
   gap: 6px;
   transition: background-color 0.2s ease;
-}
+} */
 
 /*
     display: flex;
