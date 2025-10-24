@@ -4,22 +4,58 @@
   padding: 0;
   background-color: #f8f9fa;
   border-bottom: 1px solid #e5e5e5;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 18px;
+  margin-bottom: 18px;
+  margin-right: 42px;
+  margin-left: 42px;
 }
 
+.navbar1 {
+  background: #ececf0;
+  border-radius: 21px;
+  padding: 4px;
+}
+
+.navbar2 {
+  display: flex;
+  gap: 16px;
+  padding: 24px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+  border-radius: 21px;
+}
+
+.userName {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #333;
+}
 .navItem {
   padding: 12px 20px;
-  background-color: #e9ecef;
-  border: none;
-  border-radius: 6px 6px 0 0;
-  cursor: pointer;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  color: #666;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  border-right: 1px solid #ddd;
-  margin-right: 2px;
+    border: none;
+    border-radius: 21px;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #000;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border-right: 1px solid #ececf0;
+    margin-right: 2px;
+    background: #ececf0;;
+    white-space: nowrap;
 }
 
 .navItem:hover {
@@ -36,6 +72,72 @@
 }
 
 .navItem:focus {
-  outline: 2px solid #007bff;
   outline-offset: 2px;
 }
+
+.Button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1px;
+  flex-direction: row;
+  gap: 14px;
+}
+
+.Button2{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1px;
+  flex-direction: row;
+  gap: 14px;
+}
+
+.logoutButton {
+  background-color: oklch(60.438% 0.17344 148.347);
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.logoutButton:hover {
+  background-color: oklch(43.938% 0.12384 149.063);
+}
+
+.logoutButton2:hover {
+  background-color: oklch(52.181% 0.14595 34.853);
+}
+
+.logoutButton2 {
+  background-color: oklch(67.671% 0.15715 35.076);
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.2s ease;
+}
+
+/*
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    padding: 2px;
+    gap: 14px;
+*/
