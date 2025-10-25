@@ -1,8 +1,15 @@
 import { useState } from 'react';
 import { Typography } from '@mui/material';
 import styles from './SecaoPagamento.module.css';
+import type { IMesa } from '../../types/IMesa';
+import type { IAtendente } from '../../types/IAtendente';
 
-export default function SecaoPagamento() {
+interface SecaoPagamentoProps {
+    mesaSelecionada?: IMesa;
+    atendenteSelecionado?: IAtendente;
+}
+
+export default function SecaoPagamento({ mesaSelecionada, atendenteSelecionado }: SecaoPagamentoProps) {
     const [paymentMethod, setPaymentMethod] = useState<'cartao' | 'dinheiro' | ''>('');
     const [receivedValue, setReceivedValue] = useState('');
     const total = 0.00;
@@ -10,6 +17,41 @@ export default function SecaoPagamento() {
 
     return (
         <div className={styles.container}>
+            {/* Seção de Informações do Pagamento */}
+            <div style={{ 
+                marginBottom: '20px', 
+                padding: '20px', 
+                border: '1px solid #ddd', 
+                borderRadius: '4px',
+                backgroundColor: '#f9f9f9'
+            }}>
+                <h3>Informações do Pedido</h3>
+                {mesaSelecionada ? (
+                    <>
+                        <p><strong>Mesa:</strong> {mesaSelecionada.numero}</p>
+                        <p><strong>Status:</strong> {mesaSelecionada.status}</p>
+                        <p><strong>Atendente:</strong> {atendenteSelecionado?.nome || 'Não selecionado'}</p>
+                        {mesaSelecionada.status === 'ocupada' && (
+                            <>
+                                <p><strong>Valor:</strong> R$ {mesaSelecionada.valor?.toFixed(2)}</p>
+                                <p><strong>Tempo:</strong> {mesaSelecionada.tempoOcupada} minutos</p>
+                            </>
+                        )}
+                        <div style={{ marginTop: '10px', borderTop: '1px solid #ddd', paddingTop: '10px' }}>
+                            <p><strong>Método de Pagamento:</strong> {paymentMethod ? (paymentMethod === 'cartao' ? 'Cartão' : 'Dinheiro') : 'Não selecionado'}</p>
+                            {paymentMethod === 'dinheiro' && (
+                                <>
+                                    <p><strong>Valor Recebido:</strong> R$ {receivedValue || '0.00'}</p>
+                                    <p><strong>Troco:</strong> R$ {change}</p>
+                                </>
+                            )}
+                        </div>
+                    </>
+                ) : (
+                    <p>Nenhuma mesa selecionada</p>
+                )}
+            </div>
+
             <Typography variant="h6" sx={{ marginBottom: 3 }}>
                 Pedido Atual
             </Typography>
