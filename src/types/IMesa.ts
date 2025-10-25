@@ -1,5 +1,7 @@
 export type IMesaStatus = 'livre' | 'ocupada' | 'selecionada';
 
+import type { IProduto } from './IProduto';
+
 export interface IMesa {
   id: string;
   numero: number;
@@ -7,6 +9,7 @@ export interface IMesa {
   valor?: number;
   tempoOcupada?: number; // em minutos
   inicioOcupacao?: Date;
+  itensPedido?: Array<{ produto: IProduto; quantidade: number }>;
 }
 
 export interface IMesaCard {

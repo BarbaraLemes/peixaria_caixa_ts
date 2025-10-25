@@ -4,6 +4,7 @@ import { Navbar } from "./components/Navbar"
 import { RoutesApp } from "./RoutesApp"
 import { CaixaProvider, useCaixa } from './contexts/CaixaContext';
 import { AtendenteProvider, useAtendente } from './contexts/AtendenteContext';
+import { VendasProvider } from './contexts/VendasContext';
 
 function AppContent() {
   const navigate = useNavigate();
@@ -35,7 +36,9 @@ function App() {
   return (
     <CaixaProvider>
       <AtendenteProvider>
-        <AppContent />
+        <VendasProvider>
+          <AppContent />
+        </VendasProvider>
       </AtendenteProvider>
     </CaixaProvider>
   );

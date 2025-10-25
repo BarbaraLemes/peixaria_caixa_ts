@@ -1,22 +1,13 @@
 import { useState, useCallback, useEffect } from 'react';
 import type { IMesa, IMesaStatus } from '../../types/IMesa';
+import type { IProduto } from '../../types/IProduto';
 
 // Mock data das 13 mesas
-const MESAS_MOCK: IMesa[] = [
-  { id: '1', numero: 1, status: 'livre' },
-  { id: '2', numero: 2, status: 'ocupada', valor: 45, tempoOcupada: 15, inicioOcupacao: new Date(Date.now() - 15 * 60 * 1000) },
-  { id: '3', numero: 3, status: 'livre' },
-  { id: '4', numero: 4, status: 'livre' },
-  { id: '5', numero: 5, status: 'ocupada', valor: 28, tempoOcupada: 8, inicioOcupacao: new Date(Date.now() - 8 * 60 * 1000) },
-  { id: '6', numero: 6, status: 'livre' },
-  { id: '7', numero: 7, status: 'livre' },
-  { id: '8', numero: 8, status: 'ocupada', valor: 68, tempoOcupada: 25, inicioOcupacao: new Date(Date.now() - 25 * 60 * 1000) },
-  { id: '9', numero: 9, status: 'livre' },
-  { id: '10', numero: 10, status: 'livre' },
-  { id: '11', numero: 11, status: 'livre' },
-  { id: '12', numero: 12, status: 'livre' },
-  { id: '13', numero: 13, status: 'livre' },
-];
+const MESAS_MOCK: IMesa[] = Array.from({ length: 13 }, (_, i) => ({
+  id: String(i + 1),
+  numero: i + 1,
+  status: 'livre'
+}));
 
 export const useMesas = () => {
   const [mesas, setMesas] = useState<IMesa[]>(MESAS_MOCK);
@@ -41,11 +32,16 @@ export const useMesas = () => {
   }, []);
 
   const handleMesaClick = useCallback((mesa: IMesa) => {
+    if (mesaSelecionada?.id === mesa.id) {
+      // Se clicar na mesa já selecionada, não faz nada
+      return;
+    }
+
     // Limpar seleção anterior
     setMesas(prevMesas => 
       prevMesas.map(m => ({
         ...m,
-        status: m.status === 'selecionada' ? 'livre' : m.status
+        status: m.status === 'selecionada' ? (m.itensPedido?.length ? 'ocupada' : 'livre') : m.status
       }))
     );
 
@@ -60,20 +56,26 @@ export const useMesas = () => {
       );
       setMesaSelecionada({ ...mesa, status: 'selecionada' });
     } else {
+      // Se a mesa está ocupada, carregar os itens existentes
       setMesaSelecionada(mesa);
     }
-  }, []);
+  }, [mesaSelecionada]);
 
-  const ocuparMesa = useCallback((mesaId: string, valor: number = 0) => {
+  const ocuparMesa = useCallback((mesaId: string, itensPedido: Array<{ produto: IProduto; quantidade: number }> = []) => {
+    const valorTotal = itensPedido.reduce((acc, item) => 
+      acc + (item.produto.preco * item.quantidade), 0
+    );
+
     setMesas(prevMesas => 
       prevMesas.map(mesa => 
         mesa.id === mesaId 
           ? { 
               ...mesa, 
               status: 'ocupada' as IMesaStatus,
-              valor,
+              valor: valorTotal,
               inicioOcupacao: new Date(),
-              tempoOcupada: 0
+              tempoOcupada: 0,
+              itensPedido
             }
           : mesa
       )
@@ -96,11 +98,30 @@ export const useMesas = () => {
     );
   }, []);
 
+  const atualizarItensMesa = useCallback((mesaId: string, itensPedido: Array<{ produto: IProduto; quantidade: number }>) => {
+    const valorTotal = itensPedido.reduce((acc, item) => 
+      acc + (item.produto.preco * item.quantidade), 0
+    );
+
+    setMesas(prevMesas => 
+      prevMesas.map(mesa => 
+        mesa.id === mesaId 
+          ? { 
+              ...mesa, 
+              itensPedido,
+              valor: valorTotal
+            }
+          : mesa
+      )
+    );
+  }, []);
+
   return {
     mesas,
     mesaSelecionada,
     handleMesaClick,
     ocuparMesa,
     liberarMesa,
+    atualizarItensMesa,
   };
 };

@@ -1,5 +1,7 @@
 import { useCaixa } from '../contexts/CaixaContext';
 import styles from './Relatorios.module.css';
+import { useVendas } from '../contexts/VendasContext';
+import { Typography } from '@mui/material';
 import { AttachMoney } from '@mui/icons-material';
 
 export const Relatorios = () => {

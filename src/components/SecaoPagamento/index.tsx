@@ -5,25 +5,91 @@ import styles from './SecaoPagamento.module.css';
 import type { IMesa } from '../../types/IMesa';
 import type { IAtendente } from '../../types/IAtendente';
 import type { IProduto } from '../../types/IProduto';
+import { useVendas } from '../../contexts/VendasContext';
 
 interface SecaoPagamentoProps {
     mesaSelecionada?: IMesa;
     atendenteSelecionado?: IAtendente;
     itensPedido?: Array<{ produto: IProduto; quantidade: number }>;
     onAjustarQuantidade?: (produtoId: number, ajuste: number) => void;
+    onVendaConcluida?: (mesaId: string) => void;
 }
 
 export default function SecaoPagamento({ 
     mesaSelecionada, 
     atendenteSelecionado, 
     itensPedido = [], 
-    onAjustarQuantidade 
+    onAjustarQuantidade,
+    onVendaConcluida
 }: SecaoPagamentoProps) {
+    const { adicionarVenda } = useVendas();
     const [paymentMethod, setPaymentMethod] = useState<'cartao' | 'dinheiro' | ''>('');
+    const [cardType, setCardType] = useState<'credito' | 'debito' | ''>('');
     const [receivedValue, setReceivedValue] = useState('');
+
+    const handlePaymentMethodChange = (method: 'cartao' | 'dinheiro') => {
+        setPaymentMethod(method);
+        if (method === 'dinheiro') {
+            setCardType('');
+        }
+    };
     
     const total = itensPedido.reduce((acc, item) => acc + (item.produto.preco * item.quantidade), 0);
     const change = receivedValue ? (parseFloat(receivedValue) - total).toFixed(2) : '0,00';
+
+    const handleConcluirVenda = () => {
+        if (!mesaSelecionada || !atendenteSelecionado) {
+            alert('Selecione uma mesa e um atendente para concluir a venda');
+            return;
+        }
+
+        if (!paymentMethod) {
+            alert('Selecione um método de pagamento');
+            return;
+        }
+
+        if (paymentMethod === 'cartao' && !cardType) {
+            alert('Selecione o tipo de cartão (Crédito/Débito)');
+            return;
+        }
+
+        if (paymentMethod === 'dinheiro' && !receivedValue) {
+            alert('Informe o valor recebido em dinheiro');
+            return;
+        }
+
+        const novaVenda = {
+            id: Date.now().toString(),
+            numeroMesa: mesaSelecionada.numero,
+            atendente: atendenteSelecionado,
+            itens: itensPedido,
+            total,
+            tempoOcupacao: mesaSelecionada.tempoOcupada || 0,
+            metodoPagamento: paymentMethod === 'cartao' 
+                ? `Cartão - ${cardType === 'credito' ? 'Crédito' : 'Débito'}`
+                : 'Dinheiro',
+            dataVenda: new Date(),
+            formaPagamento: {
+                tipo: paymentMethod,
+                subtipo: cardType || undefined,
+                valorRecebido: paymentMethod === 'dinheiro' ? parseFloat(receivedValue) : undefined,
+                troco: paymentMethod === 'dinheiro' ? parseFloat(change) : undefined
+            }
+        };
+
+        // Adicionar a venda ao contexto
+        adicionarVenda(novaVenda);
+
+        // Liberar a mesa
+        if (onVendaConcluida && mesaSelecionada) {
+            onVendaConcluida(mesaSelecionada.id);
+        }
+
+        // Resetar o estado do componente
+        setPaymentMethod('');
+        setCardType('');
+        setReceivedValue('');
+    };
 
     return (
         <div className={styles.container}>
@@ -48,7 +114,16 @@ export default function SecaoPagamento({
                             </>
                         )}
                         <div style={{ marginTop: '10px', borderTop: '1px solid #ddd', paddingTop: '10px' }}>
-                            <p><strong>Método de Pagamento:</strong> {paymentMethod ? (paymentMethod === 'cartao' ? 'Cartão' : 'Dinheiro') : 'Não selecionado'}</p>
+                            <p>
+                                <strong>Método de Pagamento:</strong> {
+                                paymentMethod 
+                                    ? (paymentMethod === 'cartao' 
+                                        ? `Cartão ${cardType ? `(${cardType === 'credito' ? 'Crédito' : 'Débito'})` : ''}`
+                                        : 'Dinheiro'
+                                    ) 
+                                    : 'Não selecionado'
+                                }
+                            </p>
                             {paymentMethod === 'dinheiro' && (
                                 <>
                                     <p><strong>Valor Recebido:</strong> R$ {receivedValue || '0.00'}</p>
@@ -119,7 +194,7 @@ export default function SecaoPagamento({
                     className={`${styles.paymentButton} ${
                         paymentMethod === 'cartao' ? styles.paymentButtonActive : styles.paymentButtonInactive
                     }`}
-                    onClick={() => setPaymentMethod('cartao')}
+                    onClick={() => handlePaymentMethodChange('cartao')}
                 >
                     Cartão
                 </button>
@@ -127,11 +202,32 @@ export default function SecaoPagamento({
                     className={`${styles.paymentButton} ${
                         paymentMethod === 'dinheiro' ? styles.paymentButtonActive : styles.paymentButtonInactive
                     }`}
-                    onClick={() => setPaymentMethod('dinheiro')}
+                    onClick={() => handlePaymentMethodChange('dinheiro')}
                 >
                     Dinheiro
                 </button>
             </div>
+
+            {paymentMethod === 'cartao' && (
+                <div className={styles.paymentButtons} style={{ marginTop: '10px' }}>
+                    <button
+                        className={`${styles.paymentButton} ${
+                            cardType === 'credito' ? styles.paymentButtonActive : styles.paymentButtonInactive
+                        }`}
+                        onClick={() => setCardType('credito')}
+                    >
+                        Crédito
+                    </button>
+                    <button
+                        className={`${styles.paymentButton} ${
+                            cardType === 'debito' ? styles.paymentButtonActive : styles.paymentButtonInactive
+                        }`}
+                        onClick={() => setCardType('debito')}
+                    >
+                        Débito
+                    </button>
+                </div>
+            )}
 
             {paymentMethod === 'dinheiro' && (
                 <>
@@ -153,7 +249,11 @@ export default function SecaoPagamento({
                 </>
             )}
 
-            <button className={styles.concludeButton}>
+            <button 
+                className={styles.concludeButton}
+                onClick={handleConcluirVenda}
+                disabled={!mesaSelecionada || !atendenteSelecionado || !paymentMethod || (paymentMethod === 'cartao' && !cardType) || (paymentMethod === 'dinheiro' && !receivedValue)}
+            >
                 Concluir Venda
             </button>
         </div>
