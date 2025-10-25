@@ -2,25 +2,43 @@ import { useNavigate } from 'react-router-dom';
 import Header from "./components/Header"
 import { Navbar } from "./components/Navbar"
 import { RoutesApp } from "./RoutesApp"
+import { CaixaProvider, useCaixa } from './contexts/CaixaContext';
+import { AtendenteProvider, useAtendente } from './contexts/AtendenteContext';
 
-function App() {
+function AppContent() {
   const navigate = useNavigate();
+  const { caixaAberto, abrirCaixa, fecharCaixa } = useCaixa();
+  const { atendenteSelecionado } = useAtendente();
 
   const handleNavigation = (section: string) => {
     console.log(`Navegando para: ${section}`);
-    // Navega para a rota correspondente
     navigate(`/${section}`);
   };
 
   return (
     <>
-      <Header />
-      <Navbar onNavigate={handleNavigation} />
+      <Header nomeUsuario={{ nomeUsuario: atendenteSelecionado.nome }} />
+      <Navbar 
+        onNavigate={handleNavigation}
+        onOpenCaixa={abrirCaixa}
+        onCloseCaixa={fecharCaixa}
+        caixaAberto={caixaAberto}
+      />
       <main>
         <RoutesApp />
       </main>
     </>
-  )
+  );
 }
 
-export default App
+function App() {
+  return (
+    <CaixaProvider>
+      <AtendenteProvider>
+        <AppContent />
+      </AtendenteProvider>
+    </CaixaProvider>
+  );
+}
+
+export default App;

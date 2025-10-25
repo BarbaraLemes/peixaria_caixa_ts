@@ -94,3 +94,16 @@
   background-color: #e0e0e0;
   margin-bottom: 1rem;
 }
+
+.itemPedido {
+  font-weight: bold;
+  margin-right: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.itemQuantidade{
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+}

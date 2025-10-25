@@ -8,10 +8,6 @@ export const ProdutoCard = ({ produto, onProdutoClick }: IProdutoCard) => {
     }
   };
 
-  const formatarPreco = (preco: string): number => {
-    return Number(preco.replace(',', '.'));
-  };
-
   return (
     <div 
       className={styles.produtoCard}
@@ -23,7 +19,7 @@ export const ProdutoCard = ({ produto, onProdutoClick }: IProdutoCard) => {
       </div>
       
       <div className={styles.produtoPreco}>
-        {formatarPreco(produto.preco)}
+        {`R$ ${produto.preco.toFixed(2)}`}
       </div>
     </div>
   );

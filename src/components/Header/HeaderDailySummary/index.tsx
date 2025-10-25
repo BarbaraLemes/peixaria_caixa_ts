@@ -2,12 +2,11 @@ import { ExitToApp, ShoppingCartOutlined } from "@mui/icons-material";
 import styles from "./HeaderDailySummary.module.css";
 
 interface HeaderDailySummaryProps {
-    total: number;
     pedidos: number;
     onLogout?: () => void;
 }
 
-export const HeaderDailySummary = ({ total, pedidos, onLogout }: HeaderDailySummaryProps) => {
+export const HeaderDailySummary = ({ pedidos, onLogout }: HeaderDailySummaryProps) => {
     const handleLogout = () => {
         if (onLogout) {
             onLogout();
@@ -18,13 +17,6 @@ export const HeaderDailySummary = ({ total, pedidos, onLogout }: HeaderDailySumm
 
     return (
         <div className={styles.container}>
-            <div className={styles.total1}>
-                <strong className={styles.total}>
-                    R$ {total.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
-                </strong>
-                <p className={styles.description}>Total do Dia</p>
-            </div>
-
             <div className={styles.pedidos}>
                 <div className={styles.pedidos2}>
                     <ShoppingCartOutlined sx={{ color: "#3498db", fontSize: 20 }} />

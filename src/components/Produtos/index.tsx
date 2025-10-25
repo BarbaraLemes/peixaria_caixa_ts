@@ -9,7 +9,7 @@ export interface ProdutosProps {
 }
 
 export const Produtos = ({ onProdutoSelect }: ProdutosProps) => {
-  const { produtos, categoriaAtiva, handleCategoriaChange, handleProdutoClick } = useProdutos();
+  const { produtos, categoriaAtiva, handleCategoriaChange } = useProdutos();
 
   const categorias: { id: IProduto['categoria']; label: string }[] = [
     { id: 'bebidas', label: 'Bebidas' },
@@ -18,7 +18,6 @@ export const Produtos = ({ onProdutoSelect }: ProdutosProps) => {
   ];
 
   const handleProdutoCardClick = (produto: IProduto) => {
-    handleProdutoClick(produto);
     if (onProdutoSelect) {
       onProdutoSelect(produto);
     }

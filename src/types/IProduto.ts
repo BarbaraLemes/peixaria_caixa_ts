@@ -3,7 +3,7 @@ export type CategoriaType = 'bebidas' | 'pratos' | 'sobremesas';
 export interface IProduto {
   id: number;
   nome: string;
-  preco: string;
+  preco: number;
   cor: string;
   categoria: CategoriaType;
   disponivel?: boolean;

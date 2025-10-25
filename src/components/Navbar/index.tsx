@@ -6,14 +6,15 @@ import { PlayArrow, Stop } from '@mui/icons-material';
 import { ControleCaixa } from '../ControleCaixa';
 
 interface NavbarProps {
-  onNavigate?: (section: string) => void;
+  onNavigate?: (section: string, nomeUsuario: string) => void;
+  onOpenCaixa: (valorInicial: number) => void;
+  onCloseCaixa: () => void;
+  caixaAberto: boolean;
 }
 
-export const Navbar = ({ onNavigate }: NavbarProps) => {
+export const Navbar = ({ onNavigate, onOpenCaixa, onCloseCaixa, caixaAberto }: NavbarProps) => {
   const location = useLocation();
   const [activeItem, setActiveItem] = useState('ponto-venda');
-  const [caixaAberto, setCaixaAberto] = useState(false);
-
   // Sincroniza o item ativo com a rota atual
   useEffect(() => {
     const path = location.pathname.replace('/', '') || 'ponto-venda';
@@ -23,36 +24,28 @@ export const Navbar = ({ onNavigate }: NavbarProps) => {
   const navItems = [
     {
       id: 'ponto-venda',
-      label: 'Ponto de Venda'
+      label: 'Ponto de Venda',
+      nomeUsuario: 'Atendente de Vendas'
     },
     {
       id: 'gestao-produtos',
-      label: 'Gestão de Produtos'
+      label: 'Gestão de Produtos',
+      nomeUsuario: 'Gerente de Produtos'
     },
     {
       id: 'relatorios',
-      label: 'Relatórios'
+      label: 'Relatórios',
+      nomeUsuario: 'Analista Financeiro'
     }
   ];
 
   const handleClick = (itemId: string) => {
     setActiveItem(itemId);
     if (onNavigate) {
-      onNavigate(itemId);
+      const selectedItem = navItems.find(item => item.id === itemId);
+      onNavigate(itemId, selectedItem?.nomeUsuario || 'Usuário');
     }
   };
-
-  function handleAbrirCaixa() {
-    setCaixaAberto(true);
-    //Adicionar lógica de abertura de caixa aqui
-    console.log('Caixa aberto');
-  }
-
-  function handleFecharCaixa() {
-    setCaixaAberto(false);
-    //Adicionar lógica de fechamento de caixa aqui
-    console.log('Caixa fechado');
-  }
 
   return (
     <nav className={styles.navbar}>
@@ -86,8 +79,8 @@ export const Navbar = ({ onNavigate }: NavbarProps) => {
 
       <div>
         <ControleCaixa 
-          onOpenCaixa={handleAbrirCaixa}
-          onCloseCaixa={handleFecharCaixa}
+          onOpenCaixa={onOpenCaixa}
+          onCloseCaixa={onCloseCaixa}
           caixaAberto={caixaAberto}
         />
       </div>

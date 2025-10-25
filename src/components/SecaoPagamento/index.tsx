@@ -1,18 +1,28 @@
 import { useState } from 'react';
 import { Typography } from '@mui/material';
+import { Add as AddIcon, Remove as RemoveIcon } from '@mui/icons-material';
 import styles from './SecaoPagamento.module.css';
 import type { IMesa } from '../../types/IMesa';
 import type { IAtendente } from '../../types/IAtendente';
+import type { IProduto } from '../../types/IProduto';
 
 interface SecaoPagamentoProps {
     mesaSelecionada?: IMesa;
     atendenteSelecionado?: IAtendente;
+    itensPedido?: Array<{ produto: IProduto; quantidade: number }>;
+    onAjustarQuantidade?: (produtoId: number, ajuste: number) => void;
 }
 
-export default function SecaoPagamento({ mesaSelecionada, atendenteSelecionado }: SecaoPagamentoProps) {
+export default function SecaoPagamento({ 
+    mesaSelecionada, 
+    atendenteSelecionado, 
+    itensPedido = [], 
+    onAjustarQuantidade 
+}: SecaoPagamentoProps) {
     const [paymentMethod, setPaymentMethod] = useState<'cartao' | 'dinheiro' | ''>('');
     const [receivedValue, setReceivedValue] = useState('');
-    const total = 0.00;
+    
+    const total = itensPedido.reduce((acc, item) => acc + (item.produto.preco * item.quantidade), 0);
     const change = receivedValue ? (parseFloat(receivedValue) - total).toFixed(2) : '0,00';
 
     return (
@@ -56,15 +66,52 @@ export default function SecaoPagamento({ mesaSelecionada, atendenteSelecionado }
                 Pedido Atual
             </Typography>
 
-            <div className={styles.emptyItems}>
-                <Typography>Nenhum item adicionado</Typography>
-            </div>
+            {!mesaSelecionada ? (
+                <div className={styles.emptyItems}>
+                    <Typography>Por favor, selecione uma mesa primeiro</Typography>
+                </div>
+            ) : itensPedido.length === 0 ? (
+                <div className={styles.emptyItems}>
+                    <Typography>Nenhum item adicionado</Typography>
+                </div>
+            ) : (
+                <div className={styles.itemsList}>
+                    {itensPedido.map((item) => (
+                        <div key={item.produto.id} className={styles.itemPedido}>
+                            <div className={styles.itemInfo}>
+                                <Typography variant="body1">{item.produto.nome}</Typography>
+                                <Typography variant="body2" color="textSecondary">
+                                    R$ {item.produto.preco.toFixed(2)}
+                                </Typography>
+                            </div>
+                            <div className={styles.itemQuantidade}>
+                                <button 
+                                    className={styles.quantidadeButton}
+                                    onClick={() => onAjustarQuantidade?.(item.produto.id, -1)}
+                                >
+                                    <RemoveIcon fontSize="small" />
+                                </button>
+                                <span>{item.quantidade}</span>
+                                <button 
+                                    className={styles.quantidadeButton}
+                                    onClick={() => onAjustarQuantidade?.(item.produto.id, 1)}
+                                >
+                                    <AddIcon fontSize="small" />
+                                </button>
+                                <Typography variant="body2" color="textSecondary" sx={{ marginLeft: 2 }}>
+                                    Total: R$ {(item.produto.preco * item.quantidade).toFixed(2)}
+                                </Typography>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            )}
 
             <div className={styles.divider} />
 
             <div className={styles.total}>
                 <span>Total</span>
-                <span>R$ 0,00</span>
+                <span>R$ {total.toFixed(2)}</span>
             </div>
 
             <div className={styles.paymentButtons}>

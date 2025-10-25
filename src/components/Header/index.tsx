@@ -6,7 +6,6 @@ import { HeaderUserInfo } from './HeaderUserInfo';
 interface HeaderProps {
     nomeUsuario?: IUsuario;
     tituloSistema?: string;
-    total?: number;
     pedidos?: number;
     onLogout?: () => void;
 }
@@ -14,7 +13,6 @@ interface HeaderProps {
 const Header = ({ 
     nomeUsuario = { nomeUsuario: "João da Silva" },
     tituloSistema = "Sistema de Caixa Peixaria da Laura",
-    total = 0,
     pedidos = 0,
     onLogout
 }: HeaderProps) => {
@@ -27,7 +25,6 @@ const Header = ({
                />
 
                <HeaderDailySummary
-                 total={total}
                  pedidos={pedidos}
                  onLogout={onLogout}
                 />
