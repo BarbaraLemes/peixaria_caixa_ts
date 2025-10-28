@@ -1,14 +1,17 @@
+import { useState } from 'react';
 import styles from './ControleCaixa.module.css'
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import { PlayArrow, Stop } from '@mui/icons-material';
+import { ModalAberturaCaixa } from './ModalAberturaCaixa';
 
 interface ControleCaixaProps {
-    onOpenCaixa: () => void;
+    onOpenCaixa: (valorInicial: number) => void;
     onCloseCaixa: () => void;
     caixaAberto: boolean; // Indica se o caixa está aberto ou fechado
 }
 
 export const ControleCaixa = ({ onOpenCaixa, onCloseCaixa, caixaAberto = false }: ControleCaixaProps) => {
+    const [modalAberto, setModalAberto] = useState(false);
 
     return (
         <div className={styles.container}>
@@ -21,7 +24,7 @@ export const ControleCaixa = ({ onOpenCaixa, onCloseCaixa, caixaAberto = false }
                     <button 
                         className={styles.buttonOpen} 
                         type="button"
-                        onClick={onOpenCaixa}
+                        onClick={() => setModalAberto(true)}
                         disabled={caixaAberto} // Desabilita o botão se o caixa já estiver aberto
                     > 
                         <PlayArrow/> Abrir Caixa</button>
@@ -36,6 +39,15 @@ export const ControleCaixa = ({ onOpenCaixa, onCloseCaixa, caixaAberto = false }
                         <Stop/> Fechar Caixa</button>
                 </div>
             </div>
+
+            <ModalAberturaCaixa 
+                open={modalAberto}
+                onClose={() => setModalAberto(false)}
+                onConfirm={(valorInicial) => {
+                    onOpenCaixa(valorInicial);
+                    setModalAberto(false);
+                }}
+            />
         </div>
     )
 }
